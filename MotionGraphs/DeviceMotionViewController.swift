@@ -57,10 +57,16 @@ class DeviceMotionViewController: UIViewController, MotionGraphContainer {
         }
         
         // Add the graph views to the container view.
-        for graphView in graphViews {
-            graphsContainer.addSubview(graphView)
-            graphView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        }
+//        for graphView in graphViews {
+//            graphsContainer.addSubview(graphView)
+//            graphView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        }
+        
+        graphSelector.isHidden = true
+        graphsContainer.isHidden = true
+        updateIntervalLabel.isHidden = true
+        updateIntervalSlider.isHidden = true
+        valueLabels.forEach { $0.isHidden = true }
     }
     
     override func viewWillAppear(_ animated: Bool) {
