@@ -112,7 +112,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="interval" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tgw-8f-J7m">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="interval" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tgw-8f-J7m">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -128,6 +128,23 @@
                                     </slider>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Gq-c3-1Wv">
+                                <rect key="frame" x="112.5" y="368.5" width="150" height="30"/>
+                                <state key="normal" title="Stop"/>
+                                <connections>
+                                    <action selector="stopAction:" destination="Y3g-e0-dR8" eventType="touchUpInside" id="U9Y-kk-xg6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kS7-Ws-QF5">
+                                <rect key="frame" x="112.5" y="318.5" width="150" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="MN0-2Z-i0O"/>
+                                </constraints>
+                                <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="startAction:" destination="Y3g-e0-dR8" eventType="touchUpInside" id="guz-mR-nJO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -137,12 +154,18 @@
                             <constraint firstItem="RKZ-VI-Eje" firstAttribute="leading" secondItem="5LA-MC-qcy" secondAttribute="leading" id="IHS-er-atK"/>
                             <constraint firstAttribute="trailing" secondItem="RKZ-VI-Eje" secondAttribute="trailing" id="V49-qq-voq"/>
                             <constraint firstItem="RJh-sN-wSw" firstAttribute="top" secondItem="RjI-jY-DXx" secondAttribute="bottom" constant="8" id="YGG-bv-bIs"/>
+                            <constraint firstItem="0Gq-c3-1Wv" firstAttribute="centerX" secondItem="kS7-Ws-QF5" secondAttribute="centerX" id="ZcK-Nf-QYz"/>
                             <constraint firstItem="RJh-sN-wSw" firstAttribute="trailing" secondItem="5LA-MC-qcy" secondAttribute="trailingMargin" id="ak1-bS-2RJ"/>
                             <constraint firstItem="RJh-sN-wSw" firstAttribute="leading" secondItem="5LA-MC-qcy" secondAttribute="leadingMargin" id="dt2-mg-SvR"/>
                             <constraint firstItem="MPO-4P-7N0" firstAttribute="top" secondItem="RKZ-VI-Eje" secondAttribute="bottom" constant="20" id="eFk-TC-Ev0"/>
+                            <constraint firstItem="kS7-Ws-QF5" firstAttribute="centerY" secondItem="5LA-MC-qcy" secondAttribute="centerY" id="fH2-Sn-tGE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="D3k-Jd-i6h" secondAttribute="trailing" constant="40" id="i68-3i-mTu"/>
+                            <constraint firstItem="0Gq-c3-1Wv" firstAttribute="width" secondItem="kS7-Ws-QF5" secondAttribute="width" id="kEG-p9-DsU"/>
+                            <constraint firstItem="kS7-Ws-QF5" firstAttribute="centerX" secondItem="5LA-MC-qcy" secondAttribute="centerX" id="mkE-dF-jHS"/>
                             <constraint firstItem="RKZ-VI-Eje" firstAttribute="top" secondItem="RJh-sN-wSw" secondAttribute="bottom" constant="8" id="ni2-V6-fXE"/>
+                            <constraint firstItem="0Gq-c3-1Wv" firstAttribute="top" secondItem="kS7-Ws-QF5" secondAttribute="bottom" constant="20" id="pT3-17-9zz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="MPO-4P-7N0" secondAttribute="trailing" id="wxX-Wc-oXW"/>
+                            <constraint firstItem="0Gq-c3-1Wv" firstAttribute="height" secondItem="kS7-Ws-QF5" secondAttribute="height" id="xz8-3l-U13"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Device Motion" id="7cn-zc-wqD"/>

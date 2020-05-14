@@ -64,26 +64,40 @@ class DeviceMotionViewController: UIViewController, MotionGraphContainer {
         
         graphSelector.isHidden = true
         graphsContainer.isHidden = true
-        updateIntervalLabel.isHidden = true
+//        updateIntervalLabel.isHidden = true
         updateIntervalSlider.isHidden = true
         valueLabels.forEach { $0.isHidden = true }
+        
+        updateIntervalLabel.text = ""
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        startTime = Date()
-        startUpdates()
-        startAccelerometerUpdates()
-        startGyroscopeUpdates()
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
+        
+    }
+    
+    @IBAction func startAction(_ sender: Any) {
+        startTime = Date()
+        startUpdates()
+        startAccelerometerUpdates()
+        startGyroscopeUpdates()
+        
+        updateIntervalLabel.text = "获取IMU数据中..."
+    }
+    
+    @IBAction func stopAction(_ sender: Any) {
         stopUpdates()
         stopAccelerometerUpdates()
         stopGyroscopeUpdates()
+        
+        updateIntervalLabel.text = "已停止获取IMU数据"
     }
     
     // MARK: Interface Builder actions
@@ -98,12 +112,14 @@ class DeviceMotionViewController: UIViewController, MotionGraphContainer {
     
     // MARK: MotionGraphContainer implementation
     
-    private lazy var deviceMotionLogger = Logger(fileName: "\(startTime.fileName)_deviceMotion.txt")
+    private var deviceMotionLogger: Logger?
     func startUpdates() {
         guard let motionManager = motionManager, motionManager.isDeviceMotionAvailable else { return }
         
         showGraph(selectedDeviceMotion)
-        updateIntervalLabel.text = formattedUpdateInterval
+//        updateIntervalLabel.text = formattedUpdateInterval
+        
+        deviceMotionLogger = Logger(fileName: "\(startTime.fileName)_deviceMotion.txt")
         
         motionManager.deviceMotionUpdateInterval = TimeInterval(updateIntervalSlider.value)
         motionManager.showsDeviceMovementDisplay = true
@@ -112,7 +128,7 @@ class DeviceMotionViewController: UIViewController, MotionGraphContainer {
             guard let deviceMotion = deviceMotion else { return }
             
             let attitude = double3([deviceMotion.attitude.roll, deviceMotion.attitude.pitch, deviceMotion.attitude.yaw])
-            self.deviceMotionLogger.append(line: "timestamp: \(deviceMotion.timestamp), roll: \(deviceMotion.attitude.roll), pitch: \(deviceMotion.attitude.pitch), yaw: \(deviceMotion.attitude.yaw)")
+            self.deviceMotionLogger?.append(line: "timestamp: \(deviceMotion.timestamp), roll: \(deviceMotion.attitude.roll), pitch: \(deviceMotion.attitude.pitch), yaw: \(deviceMotion.attitude.yaw)")
             let rotationRate = double3([deviceMotion.rotationRate.x, deviceMotion.rotationRate.y, deviceMotion.rotationRate.z])
             let gravity = double3([deviceMotion.gravity.x, deviceMotion.gravity.y, deviceMotion.gravity.z])
             let userAcceleration = double3([deviceMotion.userAcceleration.x, deviceMotion.userAcceleration.y, deviceMotion.userAcceleration.z])
@@ -143,15 +159,16 @@ class DeviceMotionViewController: UIViewController, MotionGraphContainer {
         guard let motionManager = motionManager, motionManager.isDeviceMotionActive else { return }
 
         motionManager.stopDeviceMotionUpdates()
-        deviceMotionLogger.save()
+        deviceMotionLogger?.save()
     }
     
     // Accelerometer
-    private lazy var accelerometerLogger = Logger(fileName: "\(startTime.fileName)_accelerometers.txt")
+    private var accelerometerLogger: Logger?
     func startAccelerometerUpdates() {
         guard let motionManager = motionManager, motionManager.isAccelerometerAvailable else { return }
         
 //        updateIntervalLabel.text = formattedUpdateInterval
+        accelerometerLogger = Logger(fileName: "\(startTime.fileName)_accelerometers.txt")
         
         motionManager.accelerometerUpdateInterval = TimeInterval(updateIntervalSlider.value)
         motionManager.showsDeviceMovementDisplay = true
@@ -160,7 +177,7 @@ class DeviceMotionViewController: UIViewController, MotionGraphContainer {
             guard let accelerometerData = accelerometerData else { return }
             
             let acceleration: double3 = [accelerometerData.acceleration.x, accelerometerData.acceleration.y, accelerometerData.acceleration.z]
-            self?.accelerometerLogger.append(line: "timestamp: \(accelerometerData.timestamp), x: \(accelerometerData.acceleration.x), y: \(accelerometerData.acceleration.y), z: \(accelerometerData.acceleration.z)")
+            self?.accelerometerLogger?.append(line: "timestamp: \(accelerometerData.timestamp), x: \(accelerometerData.acceleration.x), y: \(accelerometerData.acceleration.y), z: \(accelerometerData.acceleration.z)")
         }
     }
     
@@ -168,15 +185,16 @@ class DeviceMotionViewController: UIViewController, MotionGraphContainer {
         guard let motionManager = motionManager, motionManager.isAccelerometerAvailable else { return }
         
         motionManager.stopAccelerometerUpdates()
-        accelerometerLogger.save()
+        accelerometerLogger?.save()
     }
     
     // Gyroscope
-    private lazy var gyroscopeLogger = Logger(fileName: "\(startTime.fileName)_gyroscope.txt")
+    private var gyroscopeLogger: Logger?
     func startGyroscopeUpdates() {
         guard let motionManager = motionManager, motionManager.isGyroAvailable else { return }
         
-        updateIntervalLabel.text = formattedUpdateInterval
+//        updateIntervalLabel.text = formattedUpdateInterval
+        gyroscopeLogger = Logger(fileName: "\(startTime.fileName)_gyroscope.txt")
         
         motionManager.gyroUpdateInterval = TimeInterval(updateIntervalSlider.value)
         motionManager.showsDeviceMovementDisplay = true
@@ -185,7 +203,7 @@ class DeviceMotionViewController: UIViewController, MotionGraphContainer {
             guard let gyroData = gyroData else { return }
             
             let rotationRate: double3 = [gyroData.rotationRate.x, gyroData.rotationRate.y, gyroData.rotationRate.z]
-            self?.gyroscopeLogger.append(line: "timestamp: \(gyroData.timestamp), x: \(gyroData.rotationRate.x), y: \(gyroData.rotationRate.y), y: \(gyroData.rotationRate.z)")
+            self?.gyroscopeLogger?.append(line: "timestamp: \(gyroData.timestamp), x: \(gyroData.rotationRate.x), y: \(gyroData.rotationRate.y), y: \(gyroData.rotationRate.z)")
         }
     }
     
@@ -193,7 +211,7 @@ class DeviceMotionViewController: UIViewController, MotionGraphContainer {
         guard let motionManager = motionManager, motionManager.isAccelerometerAvailable else { return }
         
         motionManager.stopGyroUpdates()
-        gyroscopeLogger.save()
+        gyroscopeLogger?.save()
     }
     
     // MARK: Convenience
