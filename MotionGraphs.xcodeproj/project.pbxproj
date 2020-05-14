@@ -20,6 +20,7 @@
 		B587D9E41DDE7FA70087CE3D /* CGContext+GraphLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587D9E31DDE7FA70087CE3D /* CGContext+GraphLines.swift */; };
 		B5DEC4AC1DECB6DA00B8FC91 /* AccelerometerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DEC4AB1DECB6DA00B8FC91 /* AccelerometerViewController.swift */; };
 		B5DEC4AE1DECE09D00B8FC91 /* GyroscopeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DEC4AD1DECE09D00B8FC91 /* GyroscopeViewController.swift */; };
+		C7A36187246CF527006DB288 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A36186246CF527006DB288 /* Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		B5DEC4AB1DECB6DA00B8FC91 /* AccelerometerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerometerViewController.swift; sourceTree = "<group>"; };
 		B5DEC4AD1DECE09D00B8FC91 /* GyroscopeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GyroscopeViewController.swift; sourceTree = "<group>"; };
 		B5DEC4AF1DECEBE900B8FC91 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C7A36186246CF527006DB288 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				B56014351DEDEDB700B70E24 /* MagnetometerViewController.swift */,
 				B579FE5A1DDD2D3A00A8C0C7 /* MotionGraphContainer.swift */,
 				B579FE561DDD1F6F00A8C0C7 /* UIViewController+Enumerate.swift */,
+				C7A36186246CF527006DB288 /* Logger.swift */,
 				B50882BC1DDE4A4600B4C55D /* GraphView.swift */,
 				B587D9E11DDE7F4B0087CE3D /* GraphSegment.swift */,
 				B587D9E31DDE7FA70087CE3D /* CGContext+GraphLines.swift */,
@@ -165,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B587D9E41DDE7FA70087CE3D /* CGContext+GraphLines.swift in Sources */,
+				C7A36187246CF527006DB288 /* Logger.swift in Sources */,
 				B5DEC4AE1DECE09D00B8FC91 /* GyroscopeViewController.swift in Sources */,
 				B50882BD1DDE4A4600B4C55D /* GraphView.swift in Sources */,
 				B579FE551DDD1DF700A8C0C7 /* DeviceMotionViewController.swift in Sources */,
